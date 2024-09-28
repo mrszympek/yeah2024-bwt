@@ -7,7 +7,7 @@ import {
   Input,
 } from '@/shared/components';
 import { FieldValues, Control, Path } from 'react-hook-form';
-import { UserIcon } from 'lucide-react';
+
 import { cn } from '@/shared/utils';
 
 interface IFormInputProps<T extends FieldValues = FieldValues> {
