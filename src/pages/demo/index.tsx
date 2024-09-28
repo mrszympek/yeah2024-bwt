@@ -1,8 +1,7 @@
-import { LoginForm, Controls } from '@/pages/demo/views/Controls';
+import { VideoUploadRequest, uploadVideo } from '@/api/video';
+import { Controls } from '@/pages/demo/views/Controls';
 import { Upload } from '@/pages/demo/views/Upload';
-import { uploadUserInput } from '@/api/user-input';
 import { useNavigate } from 'react-router-dom';
-import { uploadVideo } from '@/api/video';
 import { useMutation } from 'react-query';
 import { Routes } from '@/shared/enums';
 import { MainLayout } from '@/core';
@@ -10,30 +9,27 @@ import { useState } from 'react';
 
 export const Demo = () => {
   const [step, setStep] = useState<'CONTROLS' | 'UPLOAD'>('UPLOAD');
+  const [videoId, setVideoId] = useState<number | null>(null);
   const navigate = useNavigate();
 
-  const uploadUserInputMutation = useMutation({
-    mutationFn: (data: LoginForm) =>
-      uploadUserInput({
-        ageRange: data.ageItems,
-        education: data.education,
-      }),
+  const uploadVideoMutation = useMutation({
+    mutationFn: (video: VideoUploadRequest) => uploadVideo(video),
     onSuccess: (data) => {
-      console.log('data', data);
-      navigate(Routes.DASHBOARD);
+      setVideoId(data.session);
     },
   });
 
   const handleUploadVideo = (video: File) => {
-    const formData = new FormData();
-    formData.append('video', video);
-
-    uploadVideo({ video: formData });
+    uploadVideoMutation.mutate({
+      video_file: video,
+      note_language: 'pl',
+      user_id: '1',
+    });
     setStep('CONTROLS');
   };
 
-  const handleUploadVideoUserInput = (data: LoginForm) => {
-    uploadUserInputMutation.mutate(data);
+  const handleUploadVideoUserInput = () => {
+    navigate(`${Routes.DASHBOARD}/${videoId}`);
   };
 
   return (

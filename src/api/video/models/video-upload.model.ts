@@ -1,7 +1,9 @@
 export interface VideoUploadRequest {
-  video: FormData;
+  note_language: string;
+  video_file: File;
+  user_id: string;
 }
 
 export interface VideoUploadResponse {
-  sessionId: string;
+  session: number;
 }

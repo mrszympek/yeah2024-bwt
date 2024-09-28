@@ -1,15 +1,27 @@
 import { Link } from 'react-router-dom';
 import { Routes } from '@/shared/enums';
 import { MainLayout } from '@/core';
+import { useEffect } from 'react';
 
 export const WelcomeScreen = () => {
+  useEffect(() => {
+    const tryData = async () => {
+      const resp = await fetch('https://kuras.theliver.pl/api/', {
+        method: 'GET',
+      });
+      console.log('resp', resp);
+    };
+
+    tryData();
+  }, []);
+
   return (
     <MainLayout>
       <h1 className="text-6xl text-white">Welcome to our</h1>
-      <span className="bg-gradient-to-r from-white to-[#D5233F] bg-clip-text text-6xl text-transparent">
+      <span className="bg-gradient-to-r from-[#D5233F]  to-[#FECD0D] bg-clip-text text-6xl text-transparent">
         Windows movie maker
       </span>
-      <Link className="mt-6 text-white" to={Routes.LOGIN}>
+      <Link className="mt-6 animate-bounce text-white" to={Routes.LOGIN}>
         Zacznij już teraz
       </Link>
     </MainLayout>

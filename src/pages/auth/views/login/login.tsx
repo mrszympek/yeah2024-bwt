@@ -25,7 +25,7 @@ export const Login = () => {
   type LoginForm = z.infer<typeof formSchema>;
 
   const formSchema = z.object({
-    email: z.string().email(t('validation.invalid-email')),
+    username: z.string().min(1, t('validation.required')),
     password: z.string().min(1, t('validation.required')),
   });
 
@@ -33,7 +33,8 @@ export const Login = () => {
     mutationFn: (userData: LoginForm) => login(userData),
     onSuccess: (data) => {
       setToken(data.token);
-      navigate('/');
+      localStorage.setItem('isLogged', 'true');
+      navigate('/dashboard/3');
     },
     onError: ({ response }) => {
       toast({
@@ -45,7 +46,7 @@ export const Login = () => {
 
   const form = useForm<LoginForm>({
     defaultValues: {
-      email: '',
+      username: '',
       password: '',
     },
     resolver: zodResolver(formSchema),
@@ -63,9 +64,9 @@ export const Login = () => {
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             <FormInput
-              placeholder={t('login.email')}
+              placeholder={'Nazwa użytkownika'}
               formControl={form.control}
-              name="email"
+              name="username"
             />
 
             <FormInput

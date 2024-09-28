@@ -35,7 +35,7 @@ export const Upload = ({ onUpload }: InnerProps) => {
               <span className="cursor-pointer text-[#D5233F]">tutaj</span>.
             </Typography>
           ) : (
-            <Typography>Plik dodany</Typography>
+            <Typography>Plik został dodany</Typography>
           )}
         </div>
       </FileUploader>

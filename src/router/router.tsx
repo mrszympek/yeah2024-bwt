@@ -12,7 +12,7 @@ export const router = createBrowserRouter([
   },
   {
     element: <Dashboard />,
-    path: Routes.DASHBOARD,
+    path: `${Routes.DASHBOARD}/:id`,
   },
   {
     element: <Demo />,
