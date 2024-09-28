@@ -1,0 +1,66 @@
+module.exports = {
+  root: true,
+  env: { browser: true, es2020: true },
+  plugins: ['prettier', 'perfectionist'],
+  extends: [
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:react-hooks/recommended',
+    'plugin:tailwindcss/recommended',
+    'plugin:perfectionist/recommended-line-length',
+  ],
+  ignorePatterns: ['dist', '.eslintrc.cjs'],
+  parser: '@typescript-eslint/parser',
+  plugins: ['perfectionist', 'react-refresh', 'prettier'],
+  settings: {
+    react: {
+      version: 'detect',
+    },
+  },
+  overrides: [
+    {
+      files: ['*.ts', '*.tsx', '*.js'],
+      parser: '@typescript-eslint/parser',
+    },
+  ],
+  rules: {
+    'perfectionist/sort-interfaces': 'warn',
+    'perfectionist/sort-imports': 'warn',
+    'perfectionist/sort-array-includes': 'warn',
+    'perfectionist/sort-classes': 'warn',
+    'perfectionist/sort-enums': 'warn',
+    'perfectionist/sort-imports': 'warn',
+    'perfectionist/sort-interfaces': 'warn',
+    'perfectionist/sort-jsx-props': 'warn',
+    'perfectionist/sort-exports': 'warn',
+    'perfectionist/sort-jsx-props': 'warn',
+    'perfectionist/sort-maps': 'warn',
+    'perfectionist/sort-named-exports': 'warn',
+    'perfectionist/sort-named-imports': 'warn',
+    'perfectionist/sort-object-types': 'warn',
+    'perfectionist/sort-objects': 'off',
+    'perfectionist/sort-union-types': 'warn',
+    'react-refresh/only-export-components': 'off',
+    'tailwindcss/enforces-shorthand': "off",
+    '@typescript-eslint/no-unused-vars': [
+      'warn',
+      {
+        vars: 'all',
+        varsIgnorePattern: '^_',
+        args: 'after-used',
+        argsIgnorePattern: '^_',
+      },
+    ],
+    'no-console': [
+      'warn',
+      {
+        allow: ['warn', 'error', 'info'],
+      },
+    ],
+    'spaced-comment': ['error', 'always'],
+    'prettier/prettier': 'warn',
+    'prefer-const': 'warn',
+    eqeqeq: 'warn',
+    'no-var': 'error',
+  },
+};
