@@ -7,6 +7,7 @@ import {
 import { TableResults } from '@/shared/components/table-results/table-results';
 import { Charts } from '@/shared/components/charts/charts';
 import { Typography } from '@/shared/components';
+import { useParams } from 'react-router-dom';
 import { getReport } from '@/api/report';
 import ReactPlayer from 'react-player';
 import { useQuery } from 'react-query';
@@ -14,10 +15,11 @@ import { useRef } from 'react';
 
 export const VideoAnalysis = () => {
   const playerRef = useRef<ReactPlayer>(null);
+  const { id } = useParams();
 
   const { data } = useQuery({
-    queryKey: ['repoData'],
-    queryFn: () => getReport(),
+    queryKey: ['reportData', id],
+    queryFn: () => getReport({ id: id || '1' }),
   });
   const handleSeekToVideo = (time: number) => {
     playerRef.current?.seekTo(time, 'seconds');
@@ -27,10 +29,10 @@ export const VideoAnalysis = () => {
     <div>
       <div className="flex flex-row gap-8">
         <ReactPlayer
+          url={data?.videoUrl ?? 'https://www.youtube.com/watch?v=LXb3EKWsInQ'}
           style={{
             borderRadius: '100px',
           }}
-          url="https://www.youtube.com/watch?v=LXb3EKWsInQ"
           ref={playerRef}
           controls={true}
         />

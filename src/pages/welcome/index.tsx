@@ -5,14 +5,7 @@ import { useEffect } from 'react';
 
 export const WelcomeScreen = () => {
   useEffect(() => {
-    const tryData = async () => {
-      const resp = await fetch('https://kuras.theliver.pl/api/', {
-        method: 'GET',
-      });
-      console.log('resp', resp);
-    };
-
-    tryData();
+    localStorage.removeItem('isLogged');
   }, []);
 
   return (

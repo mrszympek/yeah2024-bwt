@@ -58,10 +58,48 @@ const mockedData: ReportResponse = {
   videoUrl: 'https://www.youtube.com/watch?v=6n3pFFPSlW4',
 };
 
-export async function getReport(): Promise<ReportResponse> {
+export async function getReport({
+  id,
+}: {
+  id: string;
+}): Promise<ReportResponse> {
+  console.log('ID do raportu', id);
+
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(mockedData);
+    }, 1000);
+  });
+}
+
+interface AllReportsResponse {
+  label: string;
+  id: number;
+}
+
+const mockedReportsAll = [
+  {
+    label: 'Raport 1',
+    id: 1,
+  },
+  {
+    label: 'Raport 2',
+    id: 2,
+  },
+  {
+    label: 'Raport 3',
+    id: 3,
+  },
+  {
+    label: 'Raport 4',
+    id: 4,
+  },
+];
+
+export async function getAllReports(): Promise<AllReportsResponse[]> {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(mockedReportsAll);
     }, 1000);
   });
 }

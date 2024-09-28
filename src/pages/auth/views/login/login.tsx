@@ -33,7 +33,7 @@ export const Login = () => {
     mutationFn: (userData: LoginForm) => login(userData),
     onSuccess: (data) => {
       setToken(data.token);
-      localStorage.setItem('isLogged', 'true');
+      localStorage.setItem('isLogged', '1');
       navigate('/dashboard/3');
     },
     onError: ({ response }) => {
