@@ -1,4 +1,5 @@
 import { ReportResponse } from '@/api/report/models/report.model';
+import { httpClient } from '@/api/interceptors';
 
 const mockedData: ReportResponse = {
   results: {
@@ -66,14 +67,9 @@ export async function getReport({
   session: string;
   user_id: string;
 }): Promise<ReportResponse> {
-  console.log('ID do raportu', session);
-  console.log('ID użytkownika', user_id);
-
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(mockedData);
-    }, 1000);
-  });
+  return httpClient.get(
+    `https://kuras.theliver.pl/api/get_results?user_id=${user_id}&session=${session}`,
+  );
 }
 
 interface AllReportsResponse {
@@ -105,11 +101,7 @@ export async function getAllReports({
 }: {
   userId: string;
 }): Promise<AllReportsResponse[]> {
-  console.log('ID użytkownika', userId);
-
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(mockedReportsAll);
-    }, 1000);
-  });
+  return httpClient.get(
+    `https://kuras.theliver.pl/api/get_all_results?user_id=${userId}`,
+  );
 }
