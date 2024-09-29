@@ -105,6 +105,8 @@ export async function getAllReports({
 }: {
   userId: string;
 }): Promise<AllReportsResponse[]> {
+  console.log('ID użytkownika', userId);
+
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(mockedReportsAll);

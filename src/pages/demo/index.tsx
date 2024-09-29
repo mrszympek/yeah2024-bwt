@@ -34,7 +34,7 @@ export const Demo = () => {
   const uploadEmailMutation = useMutation({
     mutationFn: (email: string) =>
       uploadUserEmail({ email, video_id: videoId || 0, user: '1' }),
-    onSuccess: (data) => {
+    onSuccess: () => {
       navigate(`${Routes.DASHBOARD}/${isLogged ? 2 : 1}/${videoId}`);
     },
   });
