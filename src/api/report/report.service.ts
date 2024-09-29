@@ -56,6 +56,7 @@ const mockedData: ReportResponse = {
     },
   ],
   videoUrl: 'https://www.youtube.com/watch?v=6n3pFFPSlW4',
+  processing: true
 };
 
 export async function getReport({

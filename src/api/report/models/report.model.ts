@@ -20,5 +20,6 @@ export interface ReportResponse {
   transcription: TableResultsProps[];
   video: TableResultsProps[];
   audio: TableResultsProps[];
+  processing: boolean;
   videoUrl: string;
 }
