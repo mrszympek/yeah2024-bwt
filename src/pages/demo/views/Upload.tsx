@@ -19,6 +19,7 @@ export const Upload = ({ onUpload }: InnerProps) => {
       </Typography>
       <FileUploader
         handleChange={handleChange}
+        multiple={false}
         types={['MP4']}
         name="file"
         required
@@ -30,10 +31,15 @@ export const Upload = ({ onUpload }: InnerProps) => {
           className="mb-6 flex h-40 w-96 items-center justify-center p-6 text-center text-white"
         >
           {!video ? (
-            <Typography className="text-xs">
-              Przeciągnij pliki w to pole lub dodaj je klikając{' '}
-              <span className="cursor-pointer text-[#D5233F]">tutaj</span>.
-            </Typography>
+            <div>
+              <Typography className="text-xs">
+                Przeciągnij plik w to pole lub dodaj go klikając{' '}
+                <span className="cursor-pointer text-[#D5233F]">tutaj</span>.
+              </Typography>
+              <Typography className="text-xs">
+                (Maksymalna ilość plików: 1)
+              </Typography>
+            </div>
           ) : (
             <Typography>Plik został dodany</Typography>
           )}

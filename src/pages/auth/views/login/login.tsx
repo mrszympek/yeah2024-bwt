@@ -34,7 +34,7 @@ export const Login = () => {
     onSuccess: (data) => {
       setToken(data.token);
       localStorage.setItem('isLogged', '1');
-      navigate('/dashboard/3');
+      navigate('/dashboard/2/123');
     },
     onError: ({ response }) => {
       toast({

@@ -9,3 +9,15 @@ export async function uploadUserInput(
 ): Promise<UserInputResponse> {
   return httpClient.post('/user-input', req);
 }
+
+export async function uploadUserEmail(req: {
+  video_id: number;
+  email: string;
+  user: string;
+}) {
+  return httpClient.post('https://kuras.theliver.pl/api/send_email', {
+    email: req.email,
+    user_id: req.user,
+    session: req.video_id,
+  });
+}

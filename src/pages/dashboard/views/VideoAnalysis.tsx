@@ -15,11 +15,11 @@ import { useRef } from 'react';
 
 export const VideoAnalysis = () => {
   const playerRef = useRef<ReactPlayer>(null);
-  const { id } = useParams();
+  const { id, userId } = useParams();
 
   const { data } = useQuery({
     queryKey: ['reportData', id],
-    queryFn: () => getReport({ id: id || '1' }),
+    queryFn: () => getReport({ session: id || '1', user_id: userId || '1' }),
   });
   const handleSeekToVideo = (time: number) => {
     playerRef.current?.seekTo(time, 'seconds');

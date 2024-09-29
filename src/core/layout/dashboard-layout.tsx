@@ -1,17 +1,19 @@
+import { useNavigate, useParams, Link } from 'react-router-dom';
 import { Typography, Button } from '@/shared/components';
 import { ReactNode, useEffect, useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
 import { getAllReports } from '@/api/report';
 import { Routes } from '@/shared/enums';
 import { useQuery } from 'react-query';
+import { cn } from '@/shared/utils';
 
 export const DashboardLayout = ({ children }: { children: ReactNode }) => {
   const navigate = useNavigate();
   const [isLogged, setIsLogged] = useState(false);
+  const { userId } = useParams();
 
   const { data } = useQuery({
     queryKey: ['allReports'],
-    queryFn: () => getAllReports(),
+    queryFn: () => getAllReports({ userId: userId || '1' }),
   });
 
   useEffect(() => {
@@ -38,7 +40,7 @@ export const DashboardLayout = ({ children }: { children: ReactNode }) => {
             {data?.map((report: { label: string; id: number }) => (
               <li className="rounded-sm bg-[#130f3b] p-4" key={report.id}>
                 <Link
-                  to={`${Routes.DASHBOARD}/${report.id}`}
+                  to={`${Routes.DASHBOARD}/${userId}/${report.id}`}
                   className="text-white"
                 >
                   {report.label}
@@ -49,7 +51,13 @@ export const DashboardLayout = ({ children }: { children: ReactNode }) => {
         </nav>
       )}
 
-      <main className="col-span-10 p-12">{children}</main>
+      <main
+        className={cn('col-span-10 p-12', {
+          'col-span-12 flex justify-center': !isLogged,
+        })}
+      >
+        {children}
+      </main>
     </div>
   );
 };

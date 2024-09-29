@@ -59,11 +59,14 @@ const mockedData: ReportResponse = {
 };
 
 export async function getReport({
-  id,
+  session,
+  user_id,
 }: {
-  id: string;
+  session: string;
+  user_id: string;
 }): Promise<ReportResponse> {
-  console.log('ID do raportu', id);
+  console.log('ID do raportu', session);
+  console.log('ID użytkownika', user_id);
 
   return new Promise((resolve) => {
     setTimeout(() => {
@@ -96,7 +99,11 @@ const mockedReportsAll = [
   },
 ];
 
-export async function getAllReports(): Promise<AllReportsResponse[]> {
+export async function getAllReports({
+  userId,
+}: {
+  userId: string;
+}): Promise<AllReportsResponse[]> {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(mockedReportsAll);
