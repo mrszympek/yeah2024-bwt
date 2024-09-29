@@ -291,7 +291,7 @@ export const VideoAnalysis = () => {
 
         <div className="mt-10 flex justify-center">
           <Button onClick={() => navigate(0)} size={'lg'}>
-            Odświe
+            Odśwież
           </Button>
         </div>
       </div>

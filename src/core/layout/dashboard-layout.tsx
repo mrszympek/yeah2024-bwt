@@ -22,8 +22,12 @@ export const DashboardLayout = ({ children }: { children: ReactNode }) => {
 
   return (
     <div className="grid h-full min-h-screen w-screen grid-cols-12 bg-[url('/assets/bg.png')] bg-cover bg-center">
+      {!isLogged && (
+        <img src="/assets/logo.png" className="m-4 w-28" alt="logo" />
+      )}
       {isLogged && (
-        <nav className="col-span-2 bg-[#161146] px-4 pt-14">
+        <nav className="col-span-2 bg-[#161146] px-4 pt-4">
+          <img src="/assets/logo.png" className="m-4 w-28" alt="logo" />
           <Button
             onClick={() => navigate(Routes.DEMO)}
             className="mb-8 w-full"
